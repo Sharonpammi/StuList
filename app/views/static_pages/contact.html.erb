@@ -1,0 +1,44 @@
+<nav class = "row">
+    <div class="navbar" id = "topnav">
+      <div class="navbar-inner">
+        <div class="container">
+          <ul class="nav">
+            <li><%= link_to "Home", root_path%></li>
+            <li><%= link_to "About/FAQ", about_path%></li>
+            <li><a href="browse.html">Browse</a></li>
+            <li class = "subnav">
+              <% if signed_in? %>
+                <%= link_to "My Account", current_user, id: "myaccountnav"%>         
+              <% else %>
+                <%= link_to "My Account", signin_path, id: "myaccountnav"%>
+              <%end%>
+              <ul id = "asearchdropdown">
+                <li><%= link_to "Create a Listing", createlisting_path%></li>
+                <% if signed_in? %>
+                  <li><%= link_to "User Settings", edit_user_path(current_user)%></li>         
+                <% else %>
+                  <li><%= link_to "User Settings", signin_path%></li>
+                <%end%>
+                <li><a href = "#">My Watchlist</a></li>
+              </ul>
+            </li>
+            <li><a href="advancesearch.html">Advanced Search</a></li>
+            <li class = "active"><%= link_to "Contact", contact_path%></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+</nav>
+
+<section id = "contact" class="row">
+    <section id = "contactcontent" class="row">
+        <section id = "infoandsend" class = "row">
+            <h2 id = "contactinfoheader">Contact info</h2>
+            <h2 id = "sendmessageheader">Send us a message</h2>
+            <section id = "contactinfo">
+            </section>
+            <section id = "sendmessage">
+            </section>
+        </section>
+    </section>
+</section>

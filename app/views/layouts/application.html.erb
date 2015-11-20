@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>STULIST TEMPLATE</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+  <body>
+    <section id = "main" class = "container">
+        <!--Header includes logo, login/signup btn, and searchbar-->
+        <header class = "row">
+        
+            <!--Logo-->
+            <div class = "span3" id = "header-logo">
+            </div>
+            
+            <!--Login/Signup btn and searchbar-->
+            <section id = "loginsignupsearch" class = "span4">
+                <% if signed_in? %>
+                    <%= button_to "SIGN OUT", signout_path, method: "delete", id: "signoutbtn" %>
+                <% else %>
+                    <form method = "get" action = "signup.html" id = "signupform">
+                        <input type = "submit" value = "SIGN-UP" id = "signupbtn">
+                    </form>
+
+                    <form method = "get" action = "signin.html" id = "loginform">
+                        <input type = "submit" value = "LOG-IN" id = "loginbtn">
+                    </form>
+                <% end %>
+                <input type = "search" name = "searchbox" placeholder = "Search by keyword">
+            </section>
+            
+        </header>
+        <!-- end header -->
+        
+        <!--Top navigation bar-->
+            <%= yield %>
+        <!--End #home-->
+        
+        <!--Footer-->
+        <footer>
+            <p id = "footerhead">StuList</p>
+            <p id = "copyright">&copy; Copyright 2013. Stulist Inc. All Rights Reserved. (This is a school project)</p>
+            <a href = "home.html">Home</a>
+            <a href = "about.html">About/FAQ</a>
+            <a href = "browse.html">Browse</a>
+            <a href = "myaccount.html">My Account</a>
+            <a href = "advancesearch.html">Advanced Search</a>
+            <a href = "contact.html">Contact</a>
+        </footer>
+        <!--End footer-->
+    </section>
+    <!--End #main-->
+    
+    <!--script includes-->
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/jquery_browse.js"></script>
+    <!--end script includes-->
+  </body>
+  <!--body end-->
+</html>

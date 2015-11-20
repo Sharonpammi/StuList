@@ -1,0 +1,13 @@
+<li>
+  <span class="content">Sent to: <%= message.FromUserId %></span> 
+  <span class="content">Subject: <%= message.Body %></span>
+  <span class="field">message: <%= message.SubjectTitle %></span>
+  <span class="timestamp">
+    Sent <%= time_ago_in_words(message.created_at) %> ago.
+  </span>
+  <% if current_user?(message.user) %>
+    <%= link_to "delete", message, method: :delete,
+                                     data: { confirm: "Are you sure?" },
+                                     title: message.SubjectTitle %>
+  <% end %>
+</li>

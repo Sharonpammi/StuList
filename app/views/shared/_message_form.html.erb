@@ -1,0 +1,14 @@
+<%= form_for Message.new do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div id="to_user">
+    <%= f.text_area :FromUserId, placeholder: "Send to.." %>
+  </div>
+  <div id="subject">
+    <%= f.text_area :SubjectTitle, placeholder: "New Subject" %>
+  </div>
+  <div id="body">
+    <%= f.text_area :Body, placeholder: "Compose new message..." %>
+  </div>
+
+  <%= f.submit "Post", class: "btn btn-large btn-primary" %>
+<% end %>

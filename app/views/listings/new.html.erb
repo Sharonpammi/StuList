@@ -1,0 +1,75 @@
+<nav class = "row">
+    <div class="navbar" id = "topnav">
+      <div class="navbar-inner">
+        <div class="container">
+          <ul class="nav">
+            <li><%= link_to "Home", root_path%></li>
+            <li><%= link_to "About/FAQ", about_path%></li>
+            <li><a href="browse.html">Browse</a></li>
+            <li class = "subnav">
+              <% if signed_in? %>
+                <%= link_to "My Account", current_user, id: "myaccountnav"%>         
+              <% else %>
+                <%= link_to "My Account", signin_path, id: "myaccountnav"%>
+              <%end%>
+              <ul id = "asearchdropdown">
+                <li><%= link_to "Create a Listing", createlisting_path%></li>
+                <% if signed_in? %>
+                  <li><%= link_to "User Settings", edit_user_path(current_user)%></li>         
+                <% else %>
+                  <li><%= link_to "User Settings", signin_path%></li>
+                <%end%>
+                <li><a href = "#">My Watchlist</a></li>
+              </ul>
+            </li>
+            <li><a href="advancesearch.html">Advanced Search</a></li>
+            <li><%= link_to "Contact", contact_path%></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+</nav>
+
+<section id = "createlisting" class="row">
+  <section id = "createlistingcontent" class="container">
+    <h2>Create a Listing</h2>
+
+    <div class="row">
+      <div class="span6 offset3">
+        <%= form_for @listing, :html => { :multipart => true } do |f| %>
+          <% if @listing.errors.any? %>
+            <div id="error_explanation">
+              <div class="alert alert-error">
+                The form contains <%= pluralize(@listing.errors.count, "error") %>.
+              </div>
+              <ul>
+              <% @listing.errors.full_messages.each do |msg| %>
+                <li>* <%= msg %></li>
+              <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <%= f.label :name, "Item/Service Name" %>
+          <%= f.text_field :name %>
+
+          <%= f.label :producttype, "Product Type" %>
+          <%= f.text_field :producttype %>
+
+          <%= f.label :subcategory, "Sub Category" %>
+          <%= f.text_field :subcategory %>
+
+          <%= f.label :category, "Category" %>
+          <%= f.text_field :category %>
+
+          <%= f.label :price, "Price" %>
+          <%= f.number_field :price %>
+
+          <%= f.file_field :photo %>
+
+          <%= f.submit "Create my listing", class: "btn btn-large btn-primary", id: "submitbutton" %>
+        <% end %>
+      </div>
+    </div>
+  </section>
+</section>
